@@ -6,7 +6,7 @@ package dip.lab2;
  *
  * Any other best practice violations? Fix them too.
  *
- * @author your name goes here
+ * @author Mitch
  */
 public class FoodServiceTipCalculator {
     private static final double MIN_BILL = 0.00;

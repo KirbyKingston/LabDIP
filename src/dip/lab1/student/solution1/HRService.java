@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
  */
 public class HRService {
     
-    public enum WageType {
-        SALARIED,
-        HOURLY
-    }
+//    public enum WageType {
+//        SALARIED,
+//        HOURLY
+//    }
 
     public final double getAnnualCompensationForEmployee(Employee e){
         return e.getAnnualWages();

@@ -1,66 +1,49 @@
 package dip.lab2.student.solution1;
 
-import dip.lab2.*;
-
 /**
  * An example low-level class. Does this class definition follow the DIP?
  * If not, fix it.
  *
  * Any other best practice violations? Fix them too.
  *
- * @author your name goes here
+ * @author Mitch
  */
-public class FoodServiceTipCalculator {
-    private static final double MIN_BILL = 0.00;
-    private static final String BILL_ENTRY_ERR =
-            "Error: bill must be greater than or equal to " + MIN_BILL;
-    private static final double GOOD_RATE = 0.20;
-    private static final double FAIR_RATE = 0.15;
+public class FoodServiceTipCalculator implements TipCalculator{
+   
+    public final static String REQUIRED_MSG = "This is a required field.";
+    
+    private double billAmt;
+    private double serviceQualityTipPercent;
+    
+    private static final double GREAT_RATE = 0.20;
+    private static final double GOOD_RATE = 0.15;
     private static final double POOR_RATE = 0.10;
-
-    private double bill;
-    public enum ServiceQuality {
-        GOOD, FAIR, POOR
+    
+    public final double getBillAmt() {
+        return billAmt;
     }
-    private ServiceQuality serviceQuality;
-
-    public FoodServiceTipCalculator(ServiceQuality q, double billAmt) {
-        this.setServiceRating(q);
-        this.setBill(billAmt);
-    }
-
-    public double getTip() {
-        double tip = 0.00; // always initialize local variables
-
-        switch(serviceQuality) {
-            case GOOD:
-                tip = bill * GOOD_RATE;
-                break;
-            case FAIR:
-                tip = bill * FAIR_RATE;
-                break;
-            case POOR:
-                tip = bill * POOR_RATE;
-                break;
+    
+    public final void setBillAmt(double billAmt) {
+        if(billAmt < 0) {
+            throw new IllegalArgumentException(REQUIRED_MSG);
         }
-
-        return tip;
+        this.billAmt = billAmt;
     }
-
-    public final void setBill(double billAmt) {
-        if(billAmt < MIN_BILL) {
-            throw new IllegalArgumentException(BILL_ENTRY_ERR);
+    
+    public final double getServiceQualityTipPercent() {
+        return serviceQualityTipPercent;
+    }
+    
+    public final void setServiceQualityTipPercent(double serviceQualityTipPercent) {
+        if(serviceQualityTipPercent < 0) {
+            throw new IllegalArgumentException(REQUIRED_MSG);
         }
-        bill = billAmt;
+        this.serviceQualityTipPercent = serviceQualityTipPercent;
     }
-
-    public final void setServiceRating(ServiceQuality q) {
-        // No need to validate because enums provide type safety!
-        serviceQuality = q;
-    }
-
-    public ServiceQuality getServiceQuality() {
-        return serviceQuality;
+    
+    @Override
+    public final double calcTip() {
+         return billAmt * serviceQualityTipPercent;
     }
 
 }
