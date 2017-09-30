@@ -14,10 +14,7 @@ public class FoodServiceTipCalculator implements TipCalculator{
     
     private double billAmt;
     private double serviceQualityTipPercent;
-    
-    private static final double GREAT_RATE = 0.20;
-    private static final double GOOD_RATE = 0.15;
-    private static final double POOR_RATE = 0.10;
+ 
     
     public final double getBillAmt() {
         return billAmt;
