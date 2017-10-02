@@ -11,15 +11,15 @@ public class Startup {
         //Console Test
         MessageService consoleMessageTest = new MessageService();
         
-        String consoleInputTestString = consoleMessageTest.getConsoleMessageInput();
-        consoleMessageTest.consoleMessageOutput(consoleInputTestString);
+        String consoleInputTestMessage = consoleMessageTest.getConsoleMessageInput();
+        consoleMessageTest.consoleMessageOutput(consoleInputTestMessage);
         
         
         //GUI Test
         MessageService guiMessageTest = new MessageService();
        
-        String guiInputTestString = guiMessageTest.getGuiMessageInput();
-        guiMessageTest.guiMessageOutput(guiInputTestString);
+        String guiInputTestMessage = guiMessageTest.getGuiMessageInput();
+        guiMessageTest.guiMessageOutput(guiInputTestMessage);
         
     }
 }
