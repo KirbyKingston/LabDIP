@@ -7,6 +7,6 @@ package dip.lab3.student.solution1;
  */
 public interface MessageOutputService {
     
-    public abstract void outputMessage();
+    public abstract void outputMessage(String messageOutput);
     
 }

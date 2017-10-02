@@ -9,23 +9,28 @@ package dip.lab2;
  * @author your name goes here
  */
 public class BaggageServiceTipCalculator {
-    
-    public final static String REQUIRED_MSG = "This is a required field.";
-    
-    private double serviceQualityRate;
+    private static final double GOOD_RATE = 0.20;
+    private static final double FAIR_RATE = 0.15;
+    private static final double POOR_RATE = 0.10;
+
     private double baseTipPerBag;
     private int bagCount;
     
+    // Create separate class
+    public enum ServiceQuality {
+        GOOD, FAIR, POOR
+    }
+    
     private ServiceQuality serviceQuality;
 
-    public BaggageServiceTipCalculator(ServiceQuality q, int bags) {
-        this.setServiceRating(q); // perform validation
+    public BaggageServiceTipCalculator(ServiceQuality quality, int bags) {
+        this.setServiceRating(quality);
         this.setBagCount(bags);
-
-        baseTipPerBag = 1.00; // set default value
+        
+        baseTipPerBag  = 1.00;
     }
 
-    public double getTipForBaggeHandler() {
+    public double getTip() {
         double tip = 0.00; // always initialize local variables
 
         switch(serviceQuality) {
@@ -38,14 +43,17 @@ public class BaggageServiceTipCalculator {
             case POOR:
                 tip = baseTipPerBag * bagCount * (1 + POOR_RATE);
                 break;
+            default:
+                tip = baseTipPerBag * bagCount * (1 + FAIR_RATE);
+                break;
         }
 
         return tip;
     }
 
-    public final void setServiceRating(ServiceQuality q) {
+    public final void setServiceRating(ServiceQuality quality) {
         // No need to validate because enums provide type safety!
-        serviceQuality = q;
+        serviceQuality = quality;
     }
 
     public ServiceQuality getServiceQuality() {
@@ -61,6 +69,7 @@ public class BaggageServiceTipCalculator {
             throw new IllegalArgumentException(
                     "bag count must be greater than or equal to zero");
         }
+        
         this.bagCount = bagCount;
     }
 
@@ -68,12 +77,11 @@ public class BaggageServiceTipCalculator {
         return baseTipPerBag;
     }
 
-    public void setBaseTipPerBag(double baseTipPerBag) {
+    public final void setBaseTipPerBag(double baseTipPerBag) {
         if(baseTipPerBag < 0) {
             throw new IllegalArgumentException(
                     "error: base tip must be greater than or equal to zero");
         }
         this.baseTipPerBag = baseTipPerBag;
     }
-
 }

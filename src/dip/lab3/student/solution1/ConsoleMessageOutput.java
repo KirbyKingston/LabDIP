@@ -7,11 +7,13 @@ package dip.lab3.student.solution1;
  */
 public class ConsoleMessageOutput implements MessageOutputService{
     
-    
+    public final void ConsolMessageeOutput(String messageOutput) {
+        outputMessage(messageOutput);
+    }
 
     @Override
-    public void outputMessage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public final void outputMessage(String messageOutput) {
+        System.out.println("Message: " + messageOutput);
     }
     
 }

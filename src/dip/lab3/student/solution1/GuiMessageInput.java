@@ -1,29 +1,27 @@
 
 package dip.lab3.student.solution1;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Mitch
  */
-public class ConsoleMessageInput implements MessageInputService{
+public class GuiMessageInput implements MessageInputService{
     
-    public final String ConsoleMessageInput() {
+    public final String GuiMessageInput() {
         return getMessageInput();
     }
-    
+
     @Override
     public final String getMessageInput() {
         
         MessageValidationService v = new MessageValidationService();
-        Scanner keyboard = new Scanner(System.in);
       
-        System.out.print("Enter Message: ");
+        //JOptionPane.showInputDialog("Enter Message: ");
         
-        String messageInput = keyboard.nextLine();
+        String messageInput = JOptionPane.showInputDialog("Enter A Message: ");
         v.validateMessage(messageInput);
         return messageInput;       
     }
-    
 }
